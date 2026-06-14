@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>STYLE AI</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f7;
+      margin: 0;
+      padding: 92px 24px 24px;
+      color: #222;
+    }
+
+    h1 { margin-bottom: 4px; }
+    h2 { margin-top: 0; }
+    h3 { margin-bottom: 8px; }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(17, 24, 39, 0.96);
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,0.10);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .nav a:hover {
+      background: white;
+      color: #111827;
+    }
+
+    .page-title {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      scroll-margin-top: 105px;
+    }
+
+    .full { grid-column: 1 / 3; }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    input[type="file"] { background: #fafafa; }
+
+    button {
+      margin-top: 16px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    button:hover { background: #333; }
+
+    .secondary { background: #555; }
+    .secondary:hover { background: #333; }
+
+    .danger { background: #c0392b; }
+    .danger:hover { background: #922b21; }
+
+    .edit { background: #2563eb; }
+    .edit:hover { background: #1d4ed8; }
+
+    .success { background: #16a34a; }
+    .success:hover { background: #15803d; }
+
+    .favorite {
+      background: #f59e0b;
+      color: #111;
+    }
+
+    .favorite:hover {
+      background: #d97706;
+      color: white;
+    }
+
+    .hidden { display: none; }
+
+    .filters-box,
+    .edit-box,
+    .manual-box {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .filters-grid,
+    .edit-grid,
+    .manual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+
+    .tag.manual {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .empty {
+      color: #777;
+      font-style: italic;
+    }
+
+    small { color: #666; }
+
+    pre {
+      background: #111;
+      color: #0f0;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 12px;
+    }
+
+    .wardrobe-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .garments-grid,
+    .outfit-pieces-grid,
+    .manual-selected-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .garment-card,
+    .outfit-piece-card,
+    .manual-selected-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .garment-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+    }
+
+    .garment-card-image,
+    .outfit-piece-image,
+    .manual-selected-image {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      background: #eee;
+    }
+
+    .garment-card .no-image,
+    .outfit-piece-card .no-image,
+    .manual-selected-card .no-image {
+      width: 100%;
+      height: 210px;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px dashed #ccc;
+      background: #fafafa;
+    }
+
+    .garment-card-body,
+    .outfit-piece-body,
+    .manual-selected-body {
+      padding: 14px;
+    }
+
+    .garment-card-title,
+    .outfit-piece-title,
+    .manual-selected-title {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .garment-card-meta,
+    .outfit-piece-meta {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .garment-card-actions,
+    .garment-detail-actions {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .garment-card-actions button,
+    .garment-detail-actions button {
+      margin-top: 6px;
+      margin-right: 0;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .garment-card-file { margin-top: 12px; }
+
+    .no-image {
+      width: 110px;
+      height: 110px;
+      border-radius: 10px;
+      border: 1px dashed #bbb;
+      background: #fafafa;
+      color: #777;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      text-align: center;
+      padding: 6px;
+    }
+
+    .edit-preview-image {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #eee;
+    }
+
+    .edit-preview-placeholder {
+      width: 160px;
+      height: 160px;
+      border-radius: 10px;
+      border: 1px dashed #bbb;
+      background: #fafafa;
+      color: #777;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .garment-detail-box,
+    .look-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    .look-card.featured { border: 2px solid #111827; }
+
+    .garment-detail-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .garment-detail-image {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #eee;
+    }
+
+    .garment-detail-placeholder {
+      width: 100%;
+      height: 360px;
+      border-radius: 16px;
+      border: 1px dashed #bbb;
+      background: #fafafa;
+      color: #777;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .garment-detail-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .garment-detail-meta {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 14px;
+      line-height: 1.7;
+    }
+
+    .outfit-result { margin-top: 18px; }
+
+    .look-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .look-title,
+    .look-custom-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .look-auto-summary {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .look-subtitle {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .look-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .look-badge {
+      background: #111827;
+      color: white;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .look-badge.light {
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .look-badge.gold {
+      background: #f59e0b;
+      color: #111;
+    }
+
+    .look-badge.name,
+    .look-badge.manual {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .look-badge.auto {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .look-explanation {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 12px 0;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .look-actions { margin-top: 12px; }
+    .look-actions button { margin-top: 8px; }
+    .history-item { margin-top: 18px; }
+
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .message {
+      margin-bottom: 12px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .user {
+      background: #dbeafe;
+      text-align: right;
+    }
+
+    .assistant { background: #ecfdf5; }
+
+    .back-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      border-radius: 999px;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      font-size: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    .auth-card {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .auth-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .auth-status {
+      margin-top: 10px;
+      color: #444;
+      font-size: 14px;
+    }
+
+    .signed-out .container,
+    .signed-out .back-top {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 150px 14px 14px; }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav { justify-content: flex-start; }
+    }
+
+    @media (max-width: 800px) {
+      .container { grid-template-columns: 1fr; }
+      .full { grid-column: 1; }
+
+      .filters-grid,
+      .edit-grid,
+      .manual-grid,
+      .garment-detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .garments-grid,
+      .outfit-pieces-grid,
+      .manual-selected-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .garment-detail-image,
+      .garment-detail-placeholder {
+        height: 280px;
+      }
+
+      .auth-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body { padding: 205px 14px 14px; }
+
+      .nav a {
+        font-size: 12px;
+        padding: 6px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">STYLE AI</div>
+
+      <nav class="nav">
+        <a href="#agregar">Agregar</a>
+        <a href="#generar">Generar outfit</a>
+        <a href="#manual">Outfit manual</a>
+        <a href="#favoritos">Favoritos</a>
+        <a href="#historial">Historial</a>
+        <a href="#armario">Armario</a>
+        <a href="#chat">Chat</a>
+        <a href="#estadisticas">Stats</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-title">
+    <h1>STYLE AI</h1>
+    <p class="subtitle">Tu prototipo visual de armario digital y estilista IA simple conectado a Supabase</p>
+  </div>
+
+  <div id="authCard" class="auth-card">
+    <h2>Entrar a STYLE AI</h2>
+
+    <div class="auth-row">
+      <div>
+        <label>Email</label>
+        <input id="authEmail" type="email" placeholder="tu@email.com" autocomplete="email" />
+      </div>
+
+      <div>
+        <label>ContraseÃ±a</label>
+        <input id="authPassword" type="password" placeholder="MÃ­nimo 6 caracteres" autocomplete="current-password" />
+      </div>
+
+      <button class="success" onclick="signIn()">Entrar</button>
+      <button class="secondary" onclick="signUp()">Crear cuenta</button>
+    </div>
+
+    <div id="authStatus" class="auth-status">Conectando con Supabase...</div>
+    <button id="signOutButton" class="danger hidden" onclick="signOut()">Cerrar sesiÃ³n</button>
+  </div>
+
+  <div class="container">
+
+    <div id="agregar" class="card">
+      <h2>Agregar prenda</h2>
+
+      <label>Tipo de prenda</label>
+      <input id="type" placeholder="Ej: camisa, pantalón, tenis" />
+
+      <label>Categoría</label>
+      <select id="category">
+        <option value="top">top — Parte superior</option>
+        <option value="bottom">bottom — Parte inferior</option>
+        <option value="footwear">footwear — Calzado</option>
+        <option value="outerwear">outerwear — Chaqueta / abrigo</option>
+        <option value="accessory">accessory — Accesorio</option>
+        <option value="dress">dress — Vestido</option>
+      </select>
+
+      <div class="hint">Usa siempre estas categorías para que el estilista pueda combinar bien.</div>
+
+      <label>Color principal</label>
+      <input id="color_primary" placeholder="Ej: blanco, negro, azul" />
+
+      <label>Marca</label>
+      <input id="brand" placeholder="Ej: Zara, H&M, Adidas" />
+
+      <label>Temporada</label>
+      <input id="season" placeholder="Ej: verano, invierno, todo el año" />
+
+      <label>Formalidad 1 a 5</label>
+      <input id="formality" type="number" min="1" max="5" value="3" />
+
+      <label>Imagen de la prenda</label>
+      <input id="garmentImage" type="file" accept="image/*" />
+      <div class="hint">Opcional. Puedes subir jpg, png, webp o gif.</div>
+
+      <button onclick="addGarment()">Agregar prenda</button>
+    </div>
+
+    <div id="estadisticas" class="card">
+      <h2>Estadísticas del armario</h2>
+      <button class="secondary" onclick="loadStats()">Actualizar estadísticas</button>
+      <pre id="statsOutput">Haz clic en actualizar estadísticas.</pre>
+    </div>
+
+    <div id="editGarmentSection" class="card full hidden">
+      <h2>Editar prenda</h2>
+
+      <div class="edit-box">
+        <input id="editId" type="hidden" />
+
+        <div class="edit-grid">
+          <div>
+            <label>Tipo de prenda</label>
+            <input id="editType" />
+
+            <label>Categoría</label>
+            <select id="editCategory">
+              <option value="top">top</option>
+              <option value="bottom">bottom</option>
+              <option value="footwear">footwear</option>
+              <option value="outerwear">outerwear</option>
+              <option value="accessory">accessory</option>
+              <option value="dress">dress</option>
+            </select>
+
+            <label>Color principal</label>
+            <input id="editColor" />
+
+            <label>Marca</label>
+            <input id="editBrand" />
+
+            <label>Temporada</label>
+            <input id="editSeason" />
+
+            <label>Formalidad 1 a 5</label>
+            <input id="editFormality" type="number" min="1" max="5" />
+          </div>
+
+          <div>
+            <label>Imagen actual</label>
+            <div id="editImagePreview"></div>
+
+            <label>Cambiar imagen</label>
+            <input id="editImageFile" type="file" accept="image/*" />
+
+            <button class="danger" onclick="deleteImageFromEditForm()">Eliminar imagen actual</button>
+          </div>
+        </div>
+
+        <button class="success" onclick="saveEditedGarment()">Guardar cambios</button>
+        <button class="secondary" onclick="cancelEditGarment()">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="garmentDetailSection" class="card full hidden">
+      <h2>Detalle de prenda</h2>
+      <input id="detailGarmentId" type="hidden" />
+      <div id="garmentDetailContent"></div>
+    </div>
+
+    <div id="generar" class="card full">
+      <h2>Generar outfit automático</h2>
+
+      <label>Ocasión</label>
+      <input id="outfitOccasion" placeholder="Ej: cena casual, oficina, cita, viaje" />
+
+      <label>Clima</label>
+      <input id="outfitWeather" placeholder="Ej: soleado, noche fría, lluvia, templado" />
+
+      <label>Formalidad 1 a 5</label>
+      <input id="outfitFormality" type="number" min="1" max="5" value="3" />
+
+      <button class="success" onclick="generateOutfit()">Generar outfit</button>
+      <button class="secondary" onclick="clearOutfitResult()">Limpiar resultado</button>
+
+      <div id="outfitResult" class="outfit-result">
+        <p class="empty">Aquí aparecerá tu outfit generado.</p>
+      </div>
+    </div>
+
+    <div id="manual" class="card full">
+      <h2>Crear outfit manual</h2>
+      <p class="hint">
+        Selecciona prendas desde “Mi armario” usando el botón “Agregar al outfit manual”.
+        Luego completa los datos y guarda el look.
+      </p>
+
+      <div class="manual-box">
+        <div class="manual-grid">
+          <div>
+            <label>Nombre personalizado</label>
+            <input id="manualOutfitName" placeholder="Ej: Look cena viernes" />
+
+            <label>Ocasión</label>
+            <input id="manualOutfitOccasion" placeholder="Ej: oficina, cena casual, viaje" />
+
+            <label>Clima</label>
+            <input id="manualOutfitWeather" placeholder="Ej: templado, noche fría, soleado" />
+
+            <label>Formalidad 1 a 5</label>
+            <input id="manualOutfitFormality" type="number" min="1" max="5" value="3" />
+
+            <button class="success" onclick="createManualOutfit()">Guardar outfit manual</button>
+            <button class="secondary" onclick="clearManualSelection()">Limpiar selección</button>
+            <button class="secondary" onclick="window.location.href='#armario'">Ir al armario</button>
+          </div>
+
+          <div>
+            <h3>Prendas seleccionadas</h3>
+            <p id="manualSelectionCount" class="hint">0 prendas seleccionadas.</p>
+
+            <div id="manualSelectedList">
+              <p class="empty">Aún no has seleccionado prendas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="manualOutfitResult" class="outfit-result">
+        <p class="empty">Aquí aparecerá el outfit manual guardado.</p>
+      </div>
+    </div>
+
+    <div id="favoritos" class="card full">
+      <h2>⭐ Outfits favoritos</h2>
+
+      <button class="secondary" onclick="loadFavoriteOutfits()">Actualizar favoritos</button>
+
+      <div class="filters-box">
+        <h3>Filtros de favoritos</h3>
+
+        <div class="filters-grid">
+          <div>
+            <label>Buscar</label>
+            <input id="favoriteOutfitSearch" placeholder="Ej: oficina, cena, negro, blazer" />
+          </div>
+
+          <div>
+            <label>Formalidad objetivo</label>
+            <select id="favoriteOutfitFormality">
+              <option value="">Todas</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="success" onclick="applyFavoriteOutfitFilters()">Aplicar filtros</button>
+        <button class="secondary" onclick="clearFavoriteOutfitFilters()">Limpiar filtros</button>
+
+        <p id="favoriteFilterCount" class="hint"></p>
+      </div>
+
+      <div id="favoriteOutfitsList">
+        <p class="empty">Aquí aparecerán tus outfits favoritos.</p>
+      </div>
+    </div>
+
+    <div id="historial" class="card full">
+      <h2>Historial de outfits</h2>
+
+      <button class="secondary" onclick="loadOutfitHistory()">Actualizar historial</button>
+      <button class="danger" onclick="clearOutfitHistory()">Borrar historial</button>
+
+      <div class="filters-box">
+        <h3>Filtros de historial</h3>
+
+        <div class="filters-grid">
+          <div>
+            <label>Buscar</label>
+            <input id="historyOutfitSearch" placeholder="Ej: oficina, cita, lluvia, camisa blanca" />
+          </div>
+
+          <div>
+            <label>Formalidad objetivo</label>
+            <select id="historyOutfitFormality">
+              <option value="">Todas</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Favoritos</label>
+            <select id="historyOutfitFavorite">
+              <option value="">Todos</option>
+              <option value="favorites">Solo favoritos</option>
+              <option value="not_favorites">No favoritos</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="success" onclick="applyHistoryOutfitFilters()">Aplicar filtros</button>
+        <button class="secondary" onclick="clearHistoryOutfitFilters()">Limpiar filtros</button>
+
+        <p id="historyFilterCount" class="hint"></p>
+      </div>
+
+      <div id="outfitHistoryList">
+        <p class="empty">Aquí aparecerá el historial de outfits.</p>
+      </div>
+    </div>
+
+    <div id="armario" class="card full">
+      <div class="wardrobe-header-row">
+        <div>
+          <h2>Mi armario</h2>
+          <p class="hint">Vista tipo catálogo con tus prendas e imágenes.</p>
+        </div>
+
+        <button class="secondary" onclick="loadGarments()">Actualizar armario</button>
+      </div>
+
+      <div class="filters-box">
+        <h3>Filtros avanzados del armario</h3>
+
+        <div class="filters-grid">
+          <div>
+            <label>Categoría</label>
+            <select id="filterCategory">
+              <option value="">Todas</option>
+              <option value="top">top</option>
+              <option value="bottom">bottom</option>
+              <option value="footwear">footwear</option>
+              <option value="outerwear">outerwear</option>
+              <option value="accessory">accessory</option>
+              <option value="dress">dress</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Tipo de prenda</label>
+            <input id="filterType" />
+          </div>
+
+          <div>
+            <label>Color</label>
+            <input id="filterColor" />
+          </div>
+
+          <div>
+            <label>Temporada</label>
+            <input id="filterSeason" />
+          </div>
+
+          <div>
+            <label>Marca</label>
+            <input id="filterBrand" />
+          </div>
+
+          <div>
+            <label>Formalidad</label>
+            <select id="filterFormality">
+              <option value="">Todas</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Imagen</label>
+            <select id="filterImage">
+              <option value="">Todas</option>
+              <option value="with_image">Solo con imagen</option>
+              <option value="without_image">Solo sin imagen</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="success" onclick="applyWardrobeFilters()">Aplicar filtros</button>
+        <button class="secondary" onclick="clearWardrobeFilters()">Limpiar filtros</button>
+
+        <p id="wardrobeFilterCount" class="hint"></p>
+      </div>
+
+      <div id="garmentsList"></div>
+    </div>
+
+    <div id="chat" class="card full">
+      <h2>Chat con estilista</h2>
+
+      <div id="chatBox" class="chat-box"></div>
+
+      <label>Mensaje</label>
+      <textarea id="chatMessage" rows="3" placeholder="Ej: ¿Qué me pongo para una cena casual?"></textarea>
+
+      <label>Ocasión</label>
+      <input id="chatOccasion" placeholder="Ej: cena casual" />
+
+      <label>Clima</label>
+      <input id="chatWeather" placeholder="Ej: noche fría" />
+
+      <button onclick="sendChat()">Enviar mensaje</button>
+      <button class="secondary" onclick="loadChatHistory()">Ver historial</button>
+      <button class="danger" onclick="clearChatHistory()">Borrar historial</button>
+    </div>
+
+  </div>
+
+  <button class="back-top" onclick="window.location.href='#top'">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = "https://pitvfepogsdolkhknxye.supabase.co";
+    const supabaseKey = "sb_publishable_1aT-1IkQNwmLZOsa2W5gGQ_ooaJJzpX";
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const TABLES = {
+      garments: "Garments",
+      outfits: "Outfits",
+      chat: "Chat History"
+    };
+
+    const STORAGE_BUCKET = "garment-images";
+    const originalFetch = window.fetch.bind(window);
+    let currentUser = null;
+
+    function jsonResponse(data, status = 200) {
+      return new Response(JSON.stringify(data), {
+        status,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
+    function cleanText(value) {
+      if (value === null || value === undefined) return null;
+      const cleaned = String(value).trim();
+      return cleaned === "" ? null : cleaned;
+    }
+
+    function requireCurrentUser() {
+      if (!currentUser) {
+        throw { status: 401, detail: "Debes iniciar sesion para usar STYLE AI." };
+      }
+
+      return currentUser;
+    }
+
+    function setAuthUi(user) {
+      currentUser = user;
+      document.body.classList.toggle("signed-out", !user);
+
+      const status = document.getElementById("authStatus");
+      const signOutButton = document.getElementById("signOutButton");
+
+      if (!status || !signOutButton) return;
+
+      if (user) {
+        status.innerHTML = `<strong>Sesion activa:</strong> ${user.email}`;
+        signOutButton.classList.remove("hidden");
+      } else {
+        status.textContent = "Crea una cuenta o entra para guardar tu armario en Supabase.";
+        signOutButton.classList.add("hidden");
+      }
+    }
+
+    async function signUp() {
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
+
+      if (!email || !password) {
+        alert("Escribe email y contrasena.");
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
+      if (error) {
+        alert("Error creando cuenta: " + error.message);
+        return;
+      }
+
+      alert(data.session ? "Cuenta creada correctamente." : "Cuenta creada. Revisa tu email si Supabase pide confirmacion.");
+      await refreshSessionAndLoad();
+    }
+
+    async function signIn() {
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
+
+      if (!email || !password) {
+        alert("Escribe email y contrasena.");
+        return;
+      }
+
+      const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        alert("Error entrando: " + error.message);
+        return;
+      }
+
+      await refreshSessionAndLoad();
+    }
+
+    async function signOut() {
+      await supabaseClient.auth.signOut();
+      setAuthUi(null);
+      allGarments = [];
+      allOutfitHistory = [];
+      allFavoriteOutfits = [];
+      manualSelectedGarmentIds = [];
+    }
+
+    async function refreshSessionAndLoad() {
+      const { data } = await supabaseClient.auth.getSession();
+      setAuthUi(data.session ? data.session.user : null);
+
+      if (currentUser) {
+        await loadGarments();
+        await loadStats();
+        await loadChatHistory();
+        await loadOutfitHistory();
+        await loadFavoriteOutfits();
+      }
+    }
+
+    async function initStyleAiMvp() {
+      document.body.classList.add("signed-out");
+      await refreshSessionAndLoad();
+
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        setAuthUi(session ? session.user : null);
+        if (session) refreshSessionAndLoad();
+      });
+    }
+
+    function normalizeRow(row) {
+      return {
+        ...row,
+        brand: row.brand || null,
+        season: row.season || null,
+        formality: row.formality || null,
+        image_url: row.image_url || null
+      };
+    }
+
+    async function getGarmentsFromSupabase() {
+      const user = requireCurrentUser();
+      const { data, error } = await supabaseClient
+        .from(TABLES.garments)
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (error) throw { status: 500, detail: error.message };
+
+      return (data || []).map(normalizeRow);
+    }
+
+    function targetFormality(occasion, formalityLevel) {
+      if (formalityLevel >= 1 && formalityLevel <= 5) return formalityLevel;
+      const text = String(occasion || "").toLowerCase();
+      if (text.includes("boda") || text.includes("gala") || text.includes("formal")) return 5;
+      if (text.includes("oficina") || text.includes("trabajo") || text.includes("reuni")) return 4;
+      if (text.includes("cena") || text.includes("cita")) return 3;
+      if (text.includes("gym") || text.includes("deporte") || text.includes("playa")) return 1;
+      return 3;
+    }
+
+    function weatherNeedsOuterwear(weather) {
+      const text = String(weather || "").toLowerCase();
+      return ["frio", "fria", "lluvia", "noche", "invierno", "viento"].some((word) => text.includes(word));
+    }
+
+    function occasionPrefersDress(occasion, target) {
+      const text = String(occasion || "").toLowerCase();
+      return target >= 4 && ["boda", "gala", "cena", "formal", "evento"].some((word) => text.includes(word));
+    }
+
+    function scoreGarment(garment, target, weather) {
+      let score = 100 - Math.abs((garment.formality || target) - target) * 18;
+      const season = String(garment.season || "").toLowerCase();
+      const weatherText = String(weather || "").toLowerCase();
+      if (season.includes("todo")) score += 8;
+      if (weatherText.includes("fr") && season.includes("invierno")) score += 10;
+      if (weatherText.includes("soleado") && season.includes("verano")) score += 10;
+      if (weatherText.includes("lluvia") && garment.category === "outerwear") score += 10;
+      return score;
+    }
+
+    function pickBest(garments, category, target, weather, usedIds) {
+      return garments
+        .filter((garment) => garment.category === category && !usedIds.has(garment.id))
+        .sort((a, b) => scoreGarment(b, target, weather) - scoreGarment(a, target, weather))[0] || null;
+    }
+
+    function buildOutfitFromWardrobe(garments, request) {
+      const target = targetFormality(request.occasion, request.formality_level || null);
+      const usedIds = new Set();
+      const outfit = [];
+      const add = (garment) => {
+        if (!garment) return;
+        usedIds.add(garment.id);
+        outfit.push(garment);
+      };
+
+      if (occasionPrefersDress(request.occasion, target)) add(pickBest(garments, "dress", target, request.weather, usedIds));
+      if (outfit.length === 0) {
+        add(pickBest(garments, "top", target, request.weather, usedIds));
+        add(pickBest(garments, "bottom", target, request.weather, usedIds));
+      }
+      add(pickBest(garments, "footwear", target, request.weather, usedIds));
+      if (weatherNeedsOuterwear(request.weather)) add(pickBest(garments, "outerwear", target, request.weather, usedIds));
+      add(pickBest(garments, "accessory", target, request.weather, usedIds));
+
+      if (outfit.length === 0) {
+        throw { status: 400, detail: "Agrega prendas al armario antes de generar outfits." };
+      }
+
+      const summary = outfit.map((garment) => `${garment.type} color ${garment.color_primary}`).join(" + ");
+
+      return {
+        occasion: request.occasion,
+        weather: request.weather || null,
+        formality_level: request.formality_level || null,
+        target_formality: target,
+        outfit,
+        explanation: `Este outfit fue generado con tu armario de Supabase, priorizando formalidad ${target}, ocasion y clima.`,
+        summary,
+        is_favorite: false,
+        custom_name: null,
+        source: "auto"
+      };
+    }
+
+    function buildStats(garments) {
+      const byCategory = {};
+      const byColor = {};
+      const byFormality = {};
+      let withImage = 0;
+
+      garments.forEach((garment) => {
+        byCategory[garment.category] = (byCategory[garment.category] || 0) + 1;
+        byColor[garment.color_primary] = (byColor[garment.color_primary] || 0) + 1;
+        byFormality[garment.formality || "N/A"] = (byFormality[garment.formality || "N/A"] || 0) + 1;
+        if (garment.image_url) withImage += 1;
+      });
+
+      return {
+        total_garments: garments.length,
+        with_image: withImage,
+        without_image: garments.length - withImage,
+        by_category: byCategory,
+        by_color: byColor,
+        by_formality: byFormality
+      };
+    }
+
+    function storagePathFromUrl(url) {
+      if (!url) return null;
+      const marker = `/storage/v1/object/public/${STORAGE_BUCKET}/`;
+      const index = url.indexOf(marker);
+      if (index === -1) return null;
+      return decodeURIComponent(url.slice(index + marker.length));
+    }
+
+    async function handleApiFetch(resource, options = {}) {
+      const url = new URL(typeof resource === "string" ? resource : resource.url, window.location.href);
+      const path = url.pathname;
+      const method = (options.method || "GET").toUpperCase();
+
+      if (!path.startsWith("/wardrobe") && !path.startsWith("/stylist")) {
+        return originalFetch(resource, options);
+      }
+
+      try {
+        const user = requireCurrentUser();
+        const body = options.body && !(options.body instanceof FormData) ? JSON.parse(options.body) : null;
+
+        if (path === "/wardrobe/garments" && method === "GET") {
+          const garments = await getGarmentsFromSupabase();
+          return jsonResponse({ total: garments.length, garments });
+        }
+
+        if (path === "/wardrobe/garments" && method === "POST") {
+          const { data, error } = await supabaseClient
+            .from(TABLES.garments)
+            .insert({
+              user_id: user.id,
+              type: body.type,
+              category: body.category,
+              color_primary: body.color_primary,
+              brand: cleanText(body.brand),
+              season: cleanText(body.season),
+              formality: body.formality || null,
+              image_url: null
+            })
+            .select("*")
+            .single();
+
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Prenda creada", garment: normalizeRow(data) }, 201);
+        }
+
+        const garmentMatch = path.match(/^\/wardrobe\/garments\/([^/]+)$/);
+        if (garmentMatch && method === "GET") {
+          const { data, error } = await supabaseClient.from(TABLES.garments).select("*").eq("user_id", user.id).eq("id", garmentMatch[1]).single();
+          if (error) throw { status: 404, detail: "Prenda no encontrada" };
+          return jsonResponse(normalizeRow(data));
+        }
+
+        if (garmentMatch && method === "PUT") {
+          const { data, error } = await supabaseClient
+            .from(TABLES.garments)
+            .update({
+              type: body.type,
+              category: body.category,
+              color_primary: body.color_primary,
+              brand: cleanText(body.brand),
+              season: cleanText(body.season),
+              formality: body.formality || null
+            })
+            .eq("user_id", user.id)
+            .eq("id", garmentMatch[1])
+            .select("*")
+            .single();
+
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Prenda actualizada", garment: normalizeRow(data) });
+        }
+
+        if (garmentMatch && method === "DELETE") {
+          const { data: existing } = await supabaseClient.from(TABLES.garments).select("image_url").eq("user_id", user.id).eq("id", garmentMatch[1]).single();
+          const imagePath = storagePathFromUrl(existing && existing.image_url);
+          if (imagePath) await supabaseClient.storage.from(STORAGE_BUCKET).remove([imagePath]);
+
+          const { error } = await supabaseClient.from(TABLES.garments).delete().eq("user_id", user.id).eq("id", garmentMatch[1]);
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Prenda eliminada" });
+        }
+
+        const imageMatch = path.match(/^\/wardrobe\/garments\/([^/]+)\/image$/);
+        if (imageMatch && method === "POST") {
+          const file = options.body.get("image");
+          const extension = (file.name || "image.jpg").split(".").pop();
+          const imagePath = `${user.id}/${imageMatch[1]}-${Date.now()}.${extension}`;
+          const { error: uploadError } = await supabaseClient.storage.from(STORAGE_BUCKET).upload(imagePath, file, { upsert: true });
+          if (uploadError) throw { status: 500, detail: uploadError.message };
+
+          const { data: publicData } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath);
+          const { data, error } = await supabaseClient
+            .from(TABLES.garments)
+            .update({ image_url: publicData.publicUrl })
+            .eq("user_id", user.id)
+            .eq("id", imageMatch[1])
+            .select("*")
+            .single();
+
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Imagen subida", garment: normalizeRow(data) });
+        }
+
+        if (imageMatch && method === "DELETE") {
+          const { data: existing } = await supabaseClient.from(TABLES.garments).select("image_url").eq("user_id", user.id).eq("id", imageMatch[1]).single();
+          const imagePath = storagePathFromUrl(existing && existing.image_url);
+          if (imagePath) await supabaseClient.storage.from(STORAGE_BUCKET).remove([imagePath]);
+
+          const { data, error } = await supabaseClient
+            .from(TABLES.garments)
+            .update({ image_url: null })
+            .eq("user_id", user.id)
+            .eq("id", imageMatch[1])
+            .select("*")
+            .single();
+
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Imagen eliminada", garment: normalizeRow(data) });
+        }
+
+        if (path === "/wardrobe/stats" && method === "GET") {
+          return jsonResponse(buildStats(await getGarmentsFromSupabase()));
+        }
+
+        if (path === "/stylist/outfit" && method === "POST") {
+          const outfit = buildOutfitFromWardrobe(await getGarmentsFromSupabase(), body);
+          const { data, error } = await supabaseClient.from(TABLES.outfits).insert({ ...outfit, user_id: user.id }).select("*").single();
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse(data, 201);
+        }
+
+        if (path === "/stylist/outfits/manual" && method === "POST") {
+          const garments = await getGarmentsFromSupabase();
+          const selected = garments.filter((garment) => body.garment_ids.includes(garment.id));
+          if (selected.length === 0) throw { status: 400, detail: "Debes seleccionar al menos una prenda valida." };
+
+          const target = targetFormality(body.occasion, body.formality_level);
+          const { data, error } = await supabaseClient
+            .from(TABLES.outfits)
+            .insert({
+              user_id: user.id,
+              occasion: body.occasion,
+              weather: body.weather || null,
+              formality_level: body.formality_level || null,
+              target_formality: target,
+              outfit: selected,
+              explanation: `Este outfit fue creado manualmente desde tu armario de Supabase. Formalidad objetivo: ${target}.`,
+              summary: selected.map((garment) => `${garment.type} color ${garment.color_primary}`).join(" + "),
+              is_favorite: false,
+              custom_name: cleanText(body.custom_name),
+              source: "manual"
+            })
+            .select("*")
+            .single();
+
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse(data, 201);
+        }
+
+        if (path === "/stylist/outfits" && method === "GET") {
+          const { data, error } = await supabaseClient.from(TABLES.outfits).select("*").eq("user_id", user.id).order("created_at", { ascending: false });
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ total: (data || []).length, outfits: data || [] });
+        }
+
+        if (path === "/stylist/outfits/favorites" && method === "GET") {
+          const { data, error } = await supabaseClient.from(TABLES.outfits).select("*").eq("user_id", user.id).eq("is_favorite", true).order("created_at", { ascending: false });
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ total: (data || []).length, outfits: data || [] });
+        }
+
+        const favoriteMatch = path.match(/^\/stylist\/outfits\/([^/]+)\/favorite$/);
+        if (favoriteMatch && method === "PUT") {
+          const { data, error } = await supabaseClient.from(TABLES.outfits).update({ is_favorite: body.is_favorite }).eq("user_id", user.id).eq("id", favoriteMatch[1]).select("*").single();
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: body.is_favorite ? "Outfit marcado como favorito" : "Outfit quitado de favoritos", outfit: data });
+        }
+
+        const nameMatch = path.match(/^\/stylist\/outfits\/([^/]+)\/name$/);
+        if (nameMatch && method === "PUT") {
+          const newName = cleanText(body.custom_name);
+          const { data, error } = await supabaseClient.from(TABLES.outfits).update({ custom_name: newName }).eq("user_id", user.id).eq("id", nameMatch[1]).select("*").single();
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: newName ? "Nombre personalizado actualizado" : "Nombre personalizado eliminado", outfit: data });
+        }
+
+        if (path === "/stylist/outfits/history" && method === "DELETE") {
+          const { error } = await supabaseClient.from(TABLES.outfits).delete().eq("user_id", user.id);
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Historial de outfits eliminado correctamente" });
+        }
+
+        if (path === "/stylist/chat" && method === "POST") {
+          const garments = await getGarmentsFromSupabase();
+          const colors = [...new Set(garments.map((garment) => garment.color_primary).filter(Boolean))].slice(0, 5);
+          const reply = `Tienes ${garments.length} prendas en tu armario. Para ${body.occasion || "esta ocasion"}, puedo combinar por formalidad, clima y colores disponibles${colors.length ? ` como ${colors.join(", ")}` : ""}. Genera un outfit automatico para guardar una recomendacion concreta.`;
+          const { error } = await supabaseClient.from(TABLES.chat).insert([
+            { user_id: user.id, role: "user", content: body.message },
+            { user_id: user.id, role: "assistant", content: reply }
+          ]);
+          if (error) throw { status: 500, detail: error.message };
+
+          const { data } = await supabaseClient.from(TABLES.chat).select("role, content, created_at").eq("user_id", user.id).order("created_at", { ascending: false }).limit(10);
+          return jsonResponse({ reply, last_messages: (data || []).reverse() });
+        }
+
+        if (path === "/stylist/chat/history" && method === "GET") {
+          const { data, error } = await supabaseClient.from(TABLES.chat).select("role, content, created_at").eq("user_id", user.id).order("created_at", { ascending: true });
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ total: (data || []).length, messages: data || [] });
+        }
+
+        if (path === "/stylist/chat/history" && method === "DELETE") {
+          const { error } = await supabaseClient.from(TABLES.chat).delete().eq("user_id", user.id);
+          if (error) throw { status: 500, detail: error.message };
+          return jsonResponse({ message: "Historial del chat eliminado correctamente" });
+        }
+
+        return jsonResponse({ detail: "Ruta no implementada en el MVP Supabase." }, 404);
+      } catch (error) {
+        return jsonResponse({ detail: error.detail || error.message || String(error) }, error.status || 500);
+      }
+    }
+
+    window.fetch = handleApiFetch;
+  </script>
+
+  <script>
+    let allGarments = [];
+    let allOutfitHistory = [];
+    let allFavoriteOutfits = [];
+    let manualSelectedGarmentIds = [];
+
+    function normalizeForSearch(value) {
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      return String(value).trim().toLowerCase();
+    }
+
+    function renderImage(imageUrl, className) {
+      if (imageUrl) {
+        return `<img class="${className}" src="${imageUrl}" alt="Imagen de prenda" />`;
+      }
+
+      return `<div class="no-image">Sin imagen</div>`;
+    }
+
+    function renderEditPreview(imageUrl) {
+      if (imageUrl) {
+        return `<img class="edit-preview-image" src="${imageUrl}" alt="Imagen actual" />`;
+      }
+
+      return `<div class="edit-preview-placeholder">Sin imagen actual</div>`;
+    }
+
+    function renderDetailImage(imageUrl) {
+      if (imageUrl) {
+        return `<img class="garment-detail-image" src="${imageUrl}" alt="Imagen de prenda" />`;
+      }
+
+      return `<div class="garment-detail-placeholder">Sin imagen</div>`;
+    }
+
+    async function uploadGarmentImage(garmentId, file) {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const response = await fetch(`/wardrobe/garments/${garmentId}/image`, {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(JSON.stringify(data));
+      }
+
+      return data;
+    }
+
+    async function addGarment() {
+      const type = document.getElementById("type").value;
+      const category = document.getElementById("category").value;
+      const color_primary = document.getElementById("color_primary").value;
+      const brand = document.getElementById("brand").value;
+      const season = document.getElementById("season").value;
+      const formality = Number(document.getElementById("formality").value);
+      const imageInput = document.getElementById("garmentImage");
+      const imageFile = imageInput.files[0];
+
+      if (!type || !color_primary) {
+        alert("Debes escribir al menos tipo de prenda y color.");
+        return;
+      }
+
+      if (formality < 1 || formality > 5) {
+        alert("La formalidad debe estar entre 1 y 5.");
+        return;
+      }
+
+      const response = await fetch("/wardrobe/garments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type,
+          category,
+          color_primary,
+          brand: brand || null,
+          season: season || null,
+          formality
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error: " + JSON.stringify(data));
+        return;
+      }
+
+      if (imageFile) {
+        try {
+          await uploadGarmentImage(data.garment.id, imageFile);
+        } catch (error) {
+          alert("La prenda se creó, pero hubo error subiendo la imagen: " + error.message);
+        }
+      }
+
+      alert("Prenda agregada correctamente.");
+
+      document.getElementById("type").value = "";
+      document.getElementById("color_primary").value = "";
+      document.getElementById("brand").value = "";
+      document.getElementById("season").value = "";
+      document.getElementById("formality").value = "3";
+      document.getElementById("garmentImage").value = "";
+
+      loadGarments();
+      loadStats();
+    }
+
+    async function loadGarments() {
+      const response = await fetch("/wardrobe/garments");
+      const data = await response.json();
+
+      const container = document.getElementById("garmentsList");
+      container.innerHTML = "";
+
+      if (!response.ok) {
+        container.innerHTML = "<p>Error cargando prendas.</p>";
+        return;
+      }
+
+      allGarments = data.garments || [];
+      applyWardrobeFilters();
+      renderManualSelection();
+    }
+
+    function garmentMatchesAdvancedFilters(garment) {
+      const category = document.getElementById("filterCategory").value;
+      const type = normalizeForSearch(document.getElementById("filterType").value);
+      const color = normalizeForSearch(document.getElementById("filterColor").value);
+      const season = normalizeForSearch(document.getElementById("filterSeason").value);
+      const brand = normalizeForSearch(document.getElementById("filterBrand").value);
+      const formality = document.getElementById("filterFormality").value;
+      const imageFilter = document.getElementById("filterImage").value;
+
+      if (category && garment.category !== category) return false;
+      if (type && !normalizeForSearch(garment.type).includes(type)) return false;
+      if (color && !normalizeForSearch(garment.color_primary).includes(color)) return false;
+      if (season && !normalizeForSearch(garment.season).includes(season)) return false;
+      if (brand && !normalizeForSearch(garment.brand).includes(brand)) return false;
+      if (formality && String(garment.formality) !== String(formality)) return false;
+      if (imageFilter === "with_image" && !garment.image_url) return false;
+      if (imageFilter === "without_image" && garment.image_url) return false;
+
+      return true;
+    }
+
+    function applyWardrobeFilters() {
+      const filteredGarments = allGarments.filter(garmentMatchesAdvancedFilters);
+
+      document.getElementById("wardrobeFilterCount").textContent =
+        `Mostrando ${filteredGarments.length} de ${allGarments.length} prendas.`;
+
+      renderGarments(filteredGarments);
+    }
+
+    function clearWardrobeFilters() {
+      document.getElementById("filterCategory").value = "";
+      document.getElementById("filterType").value = "";
+      document.getElementById("filterColor").value = "";
+      document.getElementById("filterSeason").value = "";
+      document.getElementById("filterBrand").value = "";
+      document.getElementById("filterFormality").value = "";
+      document.getElementById("filterImage").value = "";
+
+      applyWardrobeFilters();
+    }
+
+    function renderGarments(garments) {
+      const container = document.getElementById("garmentsList");
+      container.innerHTML = "";
+
+      if (!garments || garments.length === 0) {
+        container.innerHTML = "<p class='empty'>No hay prendas que coincidan con los filtros.</p>";
+        return;
+      }
+
+      const totalInfo = document.createElement("p");
+      totalInfo.innerHTML = `<strong>Total encontrado:</strong> ${garments.length}`;
+      container.appendChild(totalInfo);
+
+      const grid = document.createElement("div");
+      grid.className = "garments-grid";
+
+      garments.forEach((garment) => {
+        const div = document.createElement("div");
+        div.className = "garment-card";
+
+        const selected = manualSelectedGarmentIds.includes(garment.id);
+
+        div.innerHTML = `
+          ${renderImage(garment.image_url, "garment-card-image")}
+
+          <div class="garment-card-body">
+            <div class="garment-card-title">${garment.type}</div>
+
+            <span class="tag">${garment.category}</span>
+            <span class="tag">${garment.color_primary}</span>
+            ${selected ? `<span class="tag manual">Seleccionada</span>` : ""}
+
+            <div class="garment-card-meta">
+              <strong>Marca:</strong> ${garment.brand || "Sin marca"}<br/>
+              <strong>Temporada:</strong> ${garment.season || "Sin temporada"}<br/>
+              <strong>Formalidad:</strong> ${garment.formality || "N/A"}<br/>
+              <small>ID: ${garment.id}</small>
+            </div>
+
+            <div class="garment-card-file">
+              <label>Subir o cambiar imagen</label>
+              <input id="imageInput-${garment.id}" type="file" accept="image/*" />
+            </div>
+
+            <div class="garment-card-actions">
+              <button class="success" onclick="addGarmentToManualOutfit('${garment.id}')">
+                Agregar al outfit manual
+              </button>
+
+              <button class="edit" onclick="openGarmentDetail('${garment.id}')">
+                Ver detalle
+              </button>
+
+              <button class="secondary" onclick="uploadImageForExistingGarment('${garment.id}')">
+                Subir imagen
+              </button>
+
+              <button class="danger" onclick="deleteGarmentImage('${garment.id}')">
+                Eliminar imagen
+              </button>
+
+              <button class="edit" onclick="openEditGarment('${garment.id}')">
+                Editar
+              </button>
+
+              <button class="danger" onclick="deleteGarment('${garment.id}')">
+                Eliminar prenda
+              </button>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(div);
+      });
+
+      container.appendChild(grid);
+    }
+
+    function findGarmentById(id) {
+      return allGarments.find((garment) => garment.id === id);
+    }
+
+    function addGarmentToManualOutfit(id) {
+      if (manualSelectedGarmentIds.includes(id)) {
+        alert("Esta prenda ya está seleccionada.");
+        return;
+      }
+
+      manualSelectedGarmentIds.push(id);
+      renderManualSelection();
+      applyWardrobeFilters();
+
+      alert("Prenda agregada al outfit manual.");
+    }
+
+    function removeGarmentFromManualOutfit(id) {
+      manualSelectedGarmentIds = manualSelectedGarmentIds.filter((itemId) => itemId !== id);
+      renderManualSelection();
+      applyWardrobeFilters();
+    }
+
+    function clearManualSelection() {
+      if (manualSelectedGarmentIds.length === 0) return;
+
+      const confirmed = confirm("¿Seguro que quieres limpiar la selección?");
+      if (!confirmed) return;
+
+      manualSelectedGarmentIds = [];
+      renderManualSelection();
+      applyWardrobeFilters();
+    }
+
+    function renderManualSelection() {
+      const container = document.getElementById("manualSelectedList");
+      const count = document.getElementById("manualSelectionCount");
+
+      if (!container || !count) return;
+
+      const selectedGarments = manualSelectedGarmentIds
+        .map((id) => findGarmentById(id))
+        .filter(Boolean);
+
+      count.textContent = `${selectedGarments.length} prendas seleccionadas.`;
+      container.innerHTML = "";
+
+      if (selectedGarments.length === 0) {
+        container.innerHTML = "<p class='empty'>Aún no has seleccionado prendas.</p>";
+        return;
+      }
+
+      const grid = document.createElement("div");
+      grid.className = "manual-selected-grid";
+
+      selectedGarments.forEach((garment) => {
+        const div = document.createElement("div");
+        div.className = "manual-selected-card";
+
+        div.innerHTML = `
+          ${renderImage(garment.image_url, "manual-selected-image")}
+
+          <div class="manual-selected-body">
+            <div class="manual-selected-title">${garment.type}</div>
+
+            <span class="tag">${garment.category}</span>
+            <span class="tag">${garment.color_primary}</span>
+
+            <p class="hint">
+              ${garment.brand || "Sin marca"} · Formalidad ${garment.formality || "N/A"}
+            </p>
+
+            <button class="danger" onclick="removeGarmentFromManualOutfit('${garment.id}')">
+              Quitar
+            </button>
+          </div>
+        `;
+
+        grid.appendChild(div);
+      });
+
+      container.appendChild(grid);
+    }
+
+    async function createManualOutfit() {
+      const customName = document.getElementById("manualOutfitName").value;
+      const occasion = document.getElementById("manualOutfitOccasion").value;
+      const weather = document.getElementById("manualOutfitWeather").value;
+      const formalityLevel = Number(document.getElementById("manualOutfitFormality").value);
+
+      if (manualSelectedGarmentIds.length === 0) {
+        alert("Selecciona al menos una prenda desde el armario.");
+        return;
+      }
+
+      if (!occasion) {
+        alert("Escribe una ocasión.");
+        return;
+      }
+
+      if (formalityLevel < 1 || formalityLevel > 5) {
+        alert("La formalidad debe estar entre 1 y 5.");
+        return;
+      }
+
+      const response = await fetch("/stylist/outfits/manual", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          garment_ids: manualSelectedGarmentIds,
+          occasion,
+          weather: weather || null,
+          formality_level: formalityLevel,
+          custom_name: customName || null
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error creando outfit manual: " + JSON.stringify(data));
+        return;
+      }
+
+      alert("Outfit manual guardado correctamente.");
+
+      document.getElementById("manualOutfitResult").innerHTML = renderLookCard(data, {
+        featured: true,
+        showFavoriteButton: true,
+        showNameButton: true
+      });
+
+      document.getElementById("manualOutfitName").value = "";
+      document.getElementById("manualOutfitOccasion").value = "";
+      document.getElementById("manualOutfitWeather").value = "";
+      document.getElementById("manualOutfitFormality").value = "3";
+
+      manualSelectedGarmentIds = [];
+      renderManualSelection();
+      applyWardrobeFilters();
+
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    async function openGarmentDetail(id) {
+      const response = await fetch(`/wardrobe/garments/${id}`);
+      const garment = await response.json();
+
+      if (!response.ok) {
+        alert("No pude cargar el detalle de la prenda.");
+        return;
+      }
+
+      document.getElementById("detailGarmentId").value = garment.id;
+
+      const container = document.getElementById("garmentDetailContent");
+
+      container.innerHTML = `
+        <div class="garment-detail-box">
+          <div class="garment-detail-grid">
+            <div>
+              ${renderDetailImage(garment.image_url)}
+            </div>
+
+            <div>
+              <div class="garment-detail-title">${garment.type}</div>
+
+              <span class="tag">${garment.category}</span>
+              <span class="tag">${garment.color_primary}</span>
+
+              <div class="garment-detail-meta">
+                <strong>Tipo:</strong> ${garment.type || "N/A"}<br/>
+                <strong>Categoría:</strong> ${garment.category || "N/A"}<br/>
+                <strong>Color principal:</strong> ${garment.color_primary || "N/A"}<br/>
+                <strong>Marca:</strong> ${garment.brand || "Sin marca"}<br/>
+                <strong>Temporada:</strong> ${garment.season || "Sin temporada"}<br/>
+                <strong>Formalidad:</strong> ${garment.formality || "N/A"}<br/>
+                <strong>Imagen:</strong> ${garment.image_url || "Sin imagen"}<br/>
+                <small>ID: ${garment.id}</small>
+              </div>
+
+              <div class="garment-detail-actions">
+                <button class="success" onclick="addGarmentToManualOutfit('${garment.id}')">
+                  Agregar al outfit manual
+                </button>
+
+                <button class="edit" onclick="openEditGarment('${garment.id}')">
+                  Editar prenda
+                </button>
+
+                <button class="danger" onclick="deleteGarmentImage('${garment.id}')">
+                  Eliminar imagen
+                </button>
+
+                <button class="danger" onclick="deleteGarment('${garment.id}')">
+                  Eliminar prenda
+                </button>
+
+                <button class="secondary" onclick="closeGarmentDetail()">
+                  Cerrar detalle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const detailSection = document.getElementById("garmentDetailSection");
+      detailSection.classList.remove("hidden");
+
+      detailSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function closeGarmentDetail() {
+      document.getElementById("detailGarmentId").value = "";
+      document.getElementById("garmentDetailContent").innerHTML = "";
+      document.getElementById("garmentDetailSection").classList.add("hidden");
+    }
+
+    async function uploadImageForExistingGarment(garmentId) {
+      const input = document.getElementById(`imageInput-${garmentId}`);
+
+      if (!input || !input.files || input.files.length === 0) {
+        alert("Selecciona una imagen primero.");
+        return;
+      }
+
+      try {
+        await uploadGarmentImage(garmentId, input.files[0]);
+        alert("Imagen subida correctamente.");
+
+        loadGarments();
+        loadOutfitHistory();
+        loadFavoriteOutfits();
+
+        const detailId = document.getElementById("detailGarmentId").value;
+
+        if (detailId === garmentId) {
+          openGarmentDetail(garmentId);
+        }
+      } catch (error) {
+        alert("Error subiendo imagen: " + error.message);
+      }
+    }
+
+    async function deleteGarmentImage(garmentId) {
+      const confirmed = confirm("¿Seguro que quieres eliminar la imagen de esta prenda?");
+      if (!confirmed) return;
+
+      const response = await fetch(`/wardrobe/garments/${garmentId}/image`, {
+        method: "DELETE"
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error eliminando imagen: " + JSON.stringify(data));
+        return;
+      }
+
+      alert(data.message);
+
+      const currentEditId = document.getElementById("editId").value;
+
+      if (currentEditId === garmentId) {
+        document.getElementById("editImagePreview").innerHTML = renderEditPreview(null);
+        document.getElementById("editImageFile").value = "";
+      }
+
+      loadGarments();
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+
+      const detailId = document.getElementById("detailGarmentId").value;
+
+      if (detailId === garmentId) {
+        openGarmentDetail(garmentId);
+      }
+    }
+
+    async function deleteImageFromEditForm() {
+      const garmentId = document.getElementById("editId").value;
+
+      if (!garmentId) {
+        alert("No hay prenda seleccionada.");
+        return;
+      }
+
+      await deleteGarmentImage(garmentId);
+    }
+
+    async function openEditGarment(id) {
+      const response = await fetch(`/wardrobe/garments/${id}`);
+      const garment = await response.json();
+
+      if (!response.ok) {
+        alert("No pude cargar la prenda.");
+        return;
+      }
+
+      document.getElementById("editId").value = garment.id;
+      document.getElementById("editType").value = garment.type || "";
+      document.getElementById("editCategory").value = garment.category || "top";
+      document.getElementById("editColor").value = garment.color_primary || "";
+      document.getElementById("editBrand").value = garment.brand || "";
+      document.getElementById("editSeason").value = garment.season || "";
+      document.getElementById("editFormality").value = garment.formality || 3;
+      document.getElementById("editImageFile").value = "";
+      document.getElementById("editImagePreview").innerHTML = renderEditPreview(garment.image_url);
+
+      const editSection = document.getElementById("editGarmentSection");
+      editSection.classList.remove("hidden");
+      editSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    async function saveEditedGarment() {
+      const id = document.getElementById("editId").value;
+      const type = document.getElementById("editType").value;
+      const category = document.getElementById("editCategory").value;
+      const color_primary = document.getElementById("editColor").value;
+      const brand = document.getElementById("editBrand").value;
+      const season = document.getElementById("editSeason").value;
+      const formality = Number(document.getElementById("editFormality").value);
+      const imageFile = document.getElementById("editImageFile").files[0];
+
+      if (!id) {
+        alert("No hay prenda seleccionada.");
+        return;
+      }
+
+      if (!type || !color_primary) {
+        alert("Debes escribir al menos tipo de prenda y color.");
+        return;
+      }
+
+      if (formality < 1 || formality > 5) {
+        alert("La formalidad debe estar entre 1 y 5.");
+        return;
+      }
+
+      const response = await fetch(`/wardrobe/garments/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type,
+          category,
+          color_primary,
+          brand: brand || null,
+          season: season || null,
+          formality
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error al actualizar: " + JSON.stringify(data));
+        return;
+      }
+
+      if (imageFile) {
+        try {
+          await uploadGarmentImage(id, imageFile);
+        } catch (error) {
+          alert("La prenda se actualizó, pero hubo error subiendo la imagen: " + error.message);
+        }
+      }
+
+      alert("Prenda actualizada correctamente.");
+
+      cancelEditGarment();
+      loadGarments();
+      loadStats();
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+
+      const detailId = document.getElementById("detailGarmentId").value;
+
+      if (detailId === id) {
+        openGarmentDetail(id);
+      }
+    }
+
+    function cancelEditGarment() {
+      document.getElementById("editId").value = "";
+      document.getElementById("editType").value = "";
+      document.getElementById("editCategory").value = "top";
+      document.getElementById("editColor").value = "";
+      document.getElementById("editBrand").value = "";
+      document.getElementById("editSeason").value = "";
+      document.getElementById("editFormality").value = "3";
+      document.getElementById("editImageFile").value = "";
+      document.getElementById("editImagePreview").innerHTML = "";
+      document.getElementById("editGarmentSection").classList.add("hidden");
+    }
+
+    async function deleteGarment(id) {
+      const confirmed = confirm("¿Seguro que quieres eliminar esta prenda?");
+      if (!confirmed) return;
+
+      const response = await fetch(`/wardrobe/garments/${id}`, {
+        method: "DELETE"
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error: " + JSON.stringify(data));
+        return;
+      }
+
+      alert("Prenda eliminada.");
+
+      manualSelectedGarmentIds = manualSelectedGarmentIds.filter((itemId) => itemId !== id);
+      renderManualSelection();
+
+      const editId = document.getElementById("editId").value;
+      if (editId === id) cancelEditGarment();
+
+      const detailId = document.getElementById("detailGarmentId").value;
+      if (detailId === id) closeGarmentDetail();
+
+      loadGarments();
+      loadStats();
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    async function loadStats() {
+      const response = await fetch("/wardrobe/stats");
+      const data = await response.json();
+
+      document.getElementById("statsOutput").textContent =
+        JSON.stringify(data, null, 2);
+    }
+
+    async function generateOutfit() {
+      const occasion = document.getElementById("outfitOccasion").value;
+      const weather = document.getElementById("outfitWeather").value;
+      const formalityLevel = Number(document.getElementById("outfitFormality").value);
+
+      if (!occasion) {
+        alert("Escribe una ocasión.");
+        return;
+      }
+
+      if (formalityLevel < 1 || formalityLevel > 5) {
+        alert("La formalidad debe estar entre 1 y 5.");
+        return;
+      }
+
+      const response = await fetch("/stylist/outfit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          occasion,
+          weather: weather || null,
+          formality_level: formalityLevel
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error al generar outfit: " + JSON.stringify(data));
+        return;
+      }
+
+      document.getElementById("outfitResult").innerHTML = renderLookCard(data, {
+        featured: true,
+        showFavoriteButton: true,
+        showNameButton: true
+      });
+
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    function clearOutfitResult() {
+      document.getElementById("outfitResult").innerHTML =
+        `<p class="empty">Aquí aparecerá tu outfit generado.</p>`;
+    }
+
+    function renderOutfitPiece(garment) {
+      return `
+        <div class="outfit-piece-card">
+          ${renderImage(garment.image_url, "outfit-piece-image")}
+
+          <div class="outfit-piece-body">
+            <div class="outfit-piece-title">${garment.type}</div>
+
+            <span class="tag">${garment.category}</span>
+            <span class="tag">${garment.color_primary}</span>
+
+            <div class="outfit-piece-meta">
+              <strong>Marca:</strong> ${garment.brand || "Sin marca"}<br/>
+              <strong>Temporada:</strong> ${garment.season || "Sin temporada"}<br/>
+              <strong>Formalidad:</strong> ${garment.formality || "N/A"}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLookCard(outfit, options = {}) {
+      const isFeatured = options.featured === true;
+      const showFavoriteButton = options.showFavoriteButton === true;
+      const showNameButton = options.showNameButton === true;
+      const isFavorite = outfit.is_favorite === true;
+      const hasCustomName = outfit.custom_name && outfit.custom_name.trim() !== "";
+      const source = outfit.source || "auto";
+
+      let garmentsHtml = "";
+
+      (outfit.outfit || []).forEach((garment) => {
+        garmentsHtml += renderOutfitPiece(garment);
+      });
+
+      let favoriteButton = "";
+
+      if (showFavoriteButton && outfit.id) {
+        favoriteButton = isFavorite
+          ? `<button class="favorite" onclick="toggleOutfitFavorite('${outfit.id}', false)">⭐ Quitar de favoritos</button>`
+          : `<button class="favorite" onclick="toggleOutfitFavorite('${outfit.id}', true)">☆ Marcar favorito</button>`;
+      }
+
+      let nameButtons = "";
+
+      if (showNameButton && outfit.id) {
+        nameButtons = `
+          <button class="edit" onclick="updateOutfitNamePrompt('${outfit.id}')">
+            Cambiar nombre
+          </button>
+
+          <button class="secondary" onclick="clearOutfitName('${outfit.id}')">
+            Borrar nombre
+          </button>
+        `;
+      }
+
+      const titleHtml = hasCustomName
+        ? `
+          <div class="look-custom-name">${isFavorite ? "⭐ " : ""}${outfit.custom_name}</div>
+          <div class="look-auto-summary">Resumen: ${outfit.summary}</div>
+        `
+        : `
+          <div class="look-title">${isFavorite ? "⭐ " : ""}${outfit.summary}</div>
+        `;
+
+      return `
+        <div class="look-card ${isFeatured ? "featured" : ""}">
+          <div class="look-header">
+            <div>
+              ${titleHtml}
+
+              <div class="look-subtitle">
+                <strong>Ocasión:</strong> ${outfit.occasion}<br/>
+                <strong>Clima:</strong> ${outfit.weather || "No especificado"}<br/>
+                ${outfit.created_at ? `<small>Creado: ${outfit.created_at}</small>` : ""}
+              </div>
+            </div>
+
+            <div class="look-badges">
+              <span class="look-badge ${source === "manual" ? "manual" : "auto"}">
+                ${source === "manual" ? "Manual" : "Automático"}
+              </span>
+              <span class="look-badge light">Formalidad objetivo: ${outfit.target_formality || "N/A"}</span>
+              <span class="look-badge light">Solicitada: ${outfit.formality_level || "N/A"}</span>
+              ${isFavorite ? `<span class="look-badge gold">Favorito</span>` : ""}
+              ${hasCustomName ? `<span class="look-badge name">Con nombre</span>` : ""}
+            </div>
+          </div>
+
+          <div class="look-explanation">
+            <strong>Explicación:</strong> ${outfit.explanation}
+          </div>
+
+          <h3>Prendas del look</h3>
+
+          <div class="outfit-pieces-grid">
+            ${garmentsHtml}
+          </div>
+
+          <div class="look-actions">
+            ${favoriteButton}
+            ${nameButtons}
+            ${outfit.id ? `<p><small>ID outfit: ${outfit.id}</small></p>` : ""}
+          </div>
+        </div>
+      `;
+    }
+
+    async function updateOutfitNamePrompt(outfitId) {
+      const newName = prompt(
+        "Escribe un nombre para este outfit. Si lo dejas vacío, se borrará el nombre."
+      );
+
+      if (newName === null) return;
+
+      const response = await fetch(`/stylist/outfits/${outfitId}/name`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          custom_name: newName
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error cambiando nombre: " + JSON.stringify(data));
+        return;
+      }
+
+      alert(data.message);
+
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    async function clearOutfitName(outfitId) {
+      const confirmed = confirm("¿Seguro que quieres borrar el nombre personalizado?");
+      if (!confirmed) return;
+
+      const response = await fetch(`/stylist/outfits/${outfitId}/name`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          custom_name: ""
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error borrando nombre: " + JSON.stringify(data));
+        return;
+      }
+
+      alert(data.message);
+
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    function getOutfitSearchText(outfit) {
+      const garmentsText = (outfit.outfit || []).map((garment) => {
+        return [
+          garment.type,
+          garment.category,
+          garment.color_primary,
+          garment.brand,
+          garment.season,
+          garment.formality
+        ].join(" ");
+      }).join(" ");
+
+      return [
+        outfit.custom_name,
+        outfit.summary,
+        outfit.occasion,
+        outfit.weather,
+        outfit.explanation,
+        outfit.target_formality,
+        outfit.formality_level,
+        outfit.source,
+        garmentsText
+      ].join(" ").toLowerCase();
+    }
+
+    function outfitMatchesText(outfit, searchText) {
+      const cleanSearch = normalizeForSearch(searchText);
+
+      if (!cleanSearch) return true;
+
+      return getOutfitSearchText(outfit).includes(cleanSearch);
+    }
+
+    function outfitMatchesFormality(outfit, formalityValue) {
+      if (!formalityValue) return true;
+
+      const outfitFormality = outfit.target_formality || outfit.formality_level || "";
+
+      return String(outfitFormality) === String(formalityValue);
+    }
+
+    async function loadOutfitHistory() {
+      const response = await fetch("/stylist/outfits");
+      const data = await response.json();
+
+      const container = document.getElementById("outfitHistoryList");
+      container.innerHTML = "";
+
+      if (!response.ok) {
+        container.innerHTML = "<p>Error cargando historial.</p>";
+        return;
+      }
+
+      allOutfitHistory = data.outfits || [];
+
+      applyHistoryOutfitFilters();
+    }
+
+    function applyHistoryOutfitFilters() {
+      const searchText = document.getElementById("historyOutfitSearch").value;
+      const formalityValue = document.getElementById("historyOutfitFormality").value;
+      const favoriteValue = document.getElementById("historyOutfitFavorite").value;
+
+      const filtered = allOutfitHistory.filter((outfit) => {
+        if (!outfitMatchesText(outfit, searchText)) return false;
+        if (!outfitMatchesFormality(outfit, formalityValue)) return false;
+        if (favoriteValue === "favorites" && outfit.is_favorite !== true) return false;
+        if (favoriteValue === "not_favorites" && outfit.is_favorite === true) return false;
+
+        return true;
+      });
+
+      const container = document.getElementById("outfitHistoryList");
+      container.innerHTML = "";
+
+      document.getElementById("historyFilterCount").textContent =
+        `Mostrando ${filtered.length} de ${allOutfitHistory.length} outfits.`;
+
+      renderOutfitCards(filtered, container, false);
+    }
+
+    function clearHistoryOutfitFilters() {
+      document.getElementById("historyOutfitSearch").value = "";
+      document.getElementById("historyOutfitFormality").value = "";
+      document.getElementById("historyOutfitFavorite").value = "";
+
+      applyHistoryOutfitFilters();
+    }
+
+    async function loadFavoriteOutfits() {
+      const response = await fetch("/stylist/outfits/favorites");
+      const data = await response.json();
+
+      const container = document.getElementById("favoriteOutfitsList");
+      container.innerHTML = "";
+
+      if (!response.ok) {
+        container.innerHTML = "<p>Error cargando favoritos.</p>";
+        return;
+      }
+
+      allFavoriteOutfits = data.outfits || [];
+
+      applyFavoriteOutfitFilters();
+    }
+
+    function applyFavoriteOutfitFilters() {
+      const searchText = document.getElementById("favoriteOutfitSearch").value;
+      const formalityValue = document.getElementById("favoriteOutfitFormality").value;
+
+      const filtered = allFavoriteOutfits.filter((outfit) => {
+        if (!outfitMatchesText(outfit, searchText)) return false;
+        if (!outfitMatchesFormality(outfit, formalityValue)) return false;
+
+        return true;
+      });
+
+      const container = document.getElementById("favoriteOutfitsList");
+      container.innerHTML = "";
+
+      document.getElementById("favoriteFilterCount").textContent =
+        `Mostrando ${filtered.length} de ${allFavoriteOutfits.length} favoritos.`;
+
+      renderOutfitCards(filtered, container, true);
+    }
+
+    function clearFavoriteOutfitFilters() {
+      document.getElementById("favoriteOutfitSearch").value = "";
+      document.getElementById("favoriteOutfitFormality").value = "";
+
+      applyFavoriteOutfitFilters();
+    }
+
+    function renderOutfitCards(outfits, container, onlyFavoritesSection) {
+      if (!outfits || outfits.length === 0) {
+        container.innerHTML = onlyFavoritesSection
+          ? "<p class='empty'>No hay favoritos que coincidan con los filtros.</p>"
+          : "<p class='empty'>No hay outfits que coincidan con los filtros.</p>";
+
+        return;
+      }
+
+      outfits.forEach((outfit) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "history-item";
+
+        wrapper.innerHTML = renderLookCard(outfit, {
+          featured: false,
+          showFavoriteButton: true,
+          showNameButton: true
+        });
+
+        container.appendChild(wrapper);
+      });
+    }
+
+    async function toggleOutfitFavorite(outfitId, isFavorite) {
+      const response = await fetch(`/stylist/outfits/${outfitId}/favorite`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ is_favorite: isFavorite })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error: " + JSON.stringify(data));
+        return;
+      }
+
+      alert(data.message);
+
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    async function clearOutfitHistory() {
+      const confirmed = confirm(
+        "¿Seguro que quieres borrar el historial de outfits? También se borrarán los favoritos."
+      );
+
+      if (!confirmed) return;
+
+      const response = await fetch("/stylist/outfits/history", {
+        method: "DELETE"
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error: " + JSON.stringify(data));
+        return;
+      }
+
+      alert("Historial de outfits eliminado.");
+
+      allOutfitHistory = [];
+      allFavoriteOutfits = [];
+
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    async function sendChat() {
+      const message = document.getElementById("chatMessage").value;
+      const occasion = document.getElementById("chatOccasion").value;
+      const weather = document.getElementById("chatWeather").value;
+
+      if (!message) {
+        alert("Escribe un mensaje.");
+        return;
+      }
+
+      const response = await fetch("/stylist/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message,
+          occasion: occasion || null,
+          weather: weather || null
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert("Error: " + JSON.stringify(data));
+        return;
+      }
+
+      document.getElementById("chatMessage").value = "";
+
+      renderChatMessages(data.last_messages || []);
+      loadOutfitHistory();
+      loadFavoriteOutfits();
+    }
+
+    async function loadChatHistory() {
+      const response = await fetch("/stylist/chat/history");
+      const data = await response.json();
+
+      renderChatMessages(data.messages || []);
+    }
+
+    async function clearChatHistory() {
+      const confirmed = confirm("¿Seguro que quieres borrar el historial?");
+      if (!confirmed) return;
+
+      await fetch("/stylist/chat/history", {
+        method: "DELETE"
+      });
+
+      document.getElementById("chatBox").innerHTML = "";
+    }
+
+    function renderChatMessages(messages) {
+      const chatBox = document.getElementById("chatBox");
+      chatBox.innerHTML = "";
+
+      messages.forEach((msg) => {
+        const div = document.createElement("div");
+        div.className = `message ${msg.role}`;
+
+        div.innerHTML = `
+          <strong>${msg.role === "user" ? "Tú" : "STYLE AI"}:</strong><br/>
+          ${msg.content}
+          <br/>
+          <small>${msg.created_at}</small>
+        `;
+
+        chatBox.appendChild(div);
+      });
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    initStyleAiMvp();
+  </script>
+</body>
+</html>

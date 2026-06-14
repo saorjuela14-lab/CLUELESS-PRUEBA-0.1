@@ -1,0 +1,172 @@
+[
+  {
+    "id": "3a1925ca-ad5d-4c9d-a032-6e47c70469ec",
+    "type": "chaqueta",
+    "category": "outerwear",
+    "color_primary": "negro",
+    "brand": "H&M",
+    "season": "invierno",
+    "formality": 2,
+    "image_url": null
+  },
+  {
+    "id": "596f5be3-0838-4811-a201-80c08b83aab8",
+    "type": "pantalón",
+    "category": "bottom",
+    "color_primary": "azul oscuro",
+    "brand": "Levi's",
+    "season": "todo el año",
+    "formality": 3,
+    "image_url": null
+  },
+  {
+    "id": "de0779d9-8c1d-482e-ba45-84a724e8dcd0",
+    "type": "zapatos",
+    "category": "footwear",
+    "color_primary": "negro",
+    "brand": "Adidas",
+    "season": "todo el año",
+    "formality": 2,
+    "image_url": null
+  },
+  {
+    "id": "26007150-6b8c-4629-9dad-831a2e534eef",
+    "type": "camisa",
+    "category": "top",
+    "color_primary": "blanco",
+    "brand": "Zara",
+    "season": "verano",
+    "formality": 3,
+    "image_url": null
+  },
+  {
+    "id": "b405e149-fbdf-4d9c-9f24-ffc5e890deea",
+    "type": "camisa",
+    "category": "top",
+    "color_primary": "blanco",
+    "brand": "Zara",
+    "season": "verano",
+    "formality": 3,
+    "image_url": null
+  },
+  {
+    "id": "262fc5f3-0157-452d-9d92-91ae87cbc87e",
+    "type": "camiseta",
+    "category": "top",
+    "color_primary": "negro",
+    "brand": "H&M",
+    "season": "todo el año",
+    "formality": 2,
+    "image_url": null
+  },
+  {
+    "id": "b3937e06-8f71-4935-9382-5809e2d74c49",
+    "type": "pantalón",
+    "category": "bottom",
+    "color_primary": "azul oscuro",
+    "brand": "Levi's",
+    "season": "todo el año",
+    "formality": 3,
+    "image_url": null
+  },
+  {
+    "id": "c387a56d-4bc8-40a7-afd8-c5b1faddfc7a",
+    "type": "jean",
+    "category": "bottom",
+    "color_primary": "azul",
+    "brand": "Americanino",
+    "season": "todo el año",
+    "formality": 2,
+    "image_url": null
+  },
+  {
+    "id": "35c46bd5-7418-4b0c-afba-83d06ca93369",
+    "type": "tenis",
+    "category": "footwear",
+    "color_primary": "blanco",
+    "brand": "Adidas",
+    "season": "todo el año",
+    "formality": 2,
+    "image_url": null
+  },
+  {
+    "id": "6c05aff2-b017-4520-bf24-0da378ef8987",
+    "type": "zapatos formales",
+    "category": "footwear",
+    "color_primary": "negro",
+    "brand": "Vélez",
+    "season": "todo el año",
+    "formality": 5,
+    "image_url": null
+  },
+  {
+    "id": "0c5d1cf4-a18a-4df9-bd66-da375530b494",
+    "type": "chaqueta",
+    "category": "outerwear",
+    "color_primary": "negro",
+    "brand": "H&M",
+    "season": "invierno",
+    "formality": 3,
+    "image_url": null
+  },
+  {
+    "id": "8ca7040c-546f-47b6-87a9-89bec4e1bcfc",
+    "type": "blazer",
+    "category": "outerwear",
+    "color_primary": "azul marino",
+    "brand": "Arturo Calle",
+    "season": "todo el año",
+    "formality": 5,
+    "image_url": null
+  },
+  {
+    "id": "2da6b6a4-02bc-495c-9822-1c56795073d8",
+    "type": "reloj",
+    "category": "accessory",
+    "color_primary": "plateado",
+    "brand": "Casio",
+    "season": "todo el año",
+    "formality": 4,
+    "image_url": null
+  },
+  {
+    "id": "7c030161-45e7-41cf-8425-f3fe4f1ae025",
+    "type": "vestido",
+    "category": "dress",
+    "color_primary": "rojo",
+    "brand": "Zara",
+    "season": "verano",
+    "formality": 4,
+    "image_url": null
+  },
+  {
+    "id": "6514a3cb-fa0f-4dc8-98a2-a65fa795d16a",
+    "type": "camisa",
+    "category": "top",
+    "color_primary": "rosado",
+    "brand": "Zara",
+    "season": "verano",
+    "formality": 4,
+    "image_url": null
+  },
+  {
+    "id": "87d1f581-df30-4e81-a322-6756bc804c99",
+    "type": "camisa",
+    "category": "top",
+    "color_primary": "verde",
+    "brand": "Zara",
+    "season": "verano",
+    "formality": 2,
+    "image_url": null
+  },
+  {
+    "id": "4a54acc4-4883-412c-909f-e812da38936d",
+    "type": "camiseta",
+    "category": "top",
+    "color_primary": "negro",
+    "brand": "H&M",
+    "season": "verano",
+    "formality": 2,
+    "image_url": null
+  }
+]
