@@ -1,0 +1,7 @@
+project_id = "pitvfepogsdolkhknxye"
+
+[functions.style-ai-chat]
+verify_jwt = true
+
+[functions.style-ai-outfit]
+verify_jwt = true
