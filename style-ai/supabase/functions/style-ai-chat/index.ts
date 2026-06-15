@@ -79,6 +79,7 @@ function buildPrompt(request: ChatRequest, garments: Garment[]) {
 }
 
 Deno.serve(async (request) => {
+  console.log("STYLE AI CHAT START");
   if (request.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
@@ -155,21 +156,36 @@ Deno.serve(async (request) => {
 
   const openAiData = await openAiResponse.json();
 
-  if (!openAiResponse.ok) {
-    return jsonResponse(
-      {
-        detail: openAiData.error?.message || "OpenAI request failed.",
-      },
-      502,
-    );
-  }
+console.log("OPENAI STATUS:", openAiResponse.status);
+console.log("OPENAI RESPONSE:", JSON.stringify(openAiData));
 
-  const reply = cleanText(openAiData.output_text);
+if (!openAiResponse.ok) {
+  return jsonResponse(
+    {
+      detail: openAiData?.error?.message || "OpenAI request failed.",
+      openai_response: openAiData,
+    },
+    502,
+  );
+}
 
-  if (!reply) {
-    return jsonResponse({ detail: "OpenAI returned an empty response." }, 502);
-  }
+const reply = cleanText(
+  openAiData?.output_text ||
+  openAiData?.output?.[0]?.content?.[0]?.text ||
+  ""
+);
 
+console.log("PARSED REPLY:", reply);
+
+if (!reply) {
+  return jsonResponse(
+    {
+      detail: "OpenAI returned an empty response.",
+      openai_response: openAiData,
+    },
+    502,
+  );
+}
   const { error: insertError } = await supabase.from("Chat History").insert([
     {
       user_id: user.id,
