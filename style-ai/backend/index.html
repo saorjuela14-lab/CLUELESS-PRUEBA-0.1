@@ -475,6 +475,11 @@
       color: #1e40af;
     }
 
+    .look-badge.ai {
+      background: #f3e8ff;
+      color: #6b21a8;
+    }
+
     .look-explanation {
       background: #fff;
       border: 1px solid #e5e7eb;
@@ -1372,6 +1377,16 @@
         }
 
         if (path === "/stylist/outfit" && method === "POST") {
+          const { data: aiOutfitData, error: aiOutfitError } = await supabaseClient.functions.invoke("style-ai-outfit", {
+            body
+          });
+
+          if (!aiOutfitError && aiOutfitData && aiOutfitData.outfit) {
+            return jsonResponse(aiOutfitData, 201);
+          }
+
+          console.warn("STYLE AI outfit Edge Function fallback:", aiOutfitError || aiOutfitData);
+
           const outfit = buildOutfitFromWardrobe(await getGarmentsFromSupabase(), body);
           const { data, error } = await supabaseClient.from(TABLES.outfits).insert({ ...outfit, user_id: user.id }).select("*").single();
           if (error) throw { status: 500, detail: error.message };
@@ -1440,6 +1455,16 @@
         }
 
         if (path === "/stylist/chat" && method === "POST") {
+          const { data: aiData, error: aiError } = await supabaseClient.functions.invoke("style-ai-chat", {
+            body
+          });
+
+          if (!aiError && aiData && aiData.reply) {
+            return jsonResponse(aiData);
+          }
+
+          console.warn("STYLE AI Edge Function fallback:", aiError || aiData);
+
           const garments = await getGarmentsFromSupabase();
           const colors = [...new Set(garments.map((garment) => garment.color_primary).filter(Boolean))].slice(0, 5);
           const reply = `Tienes ${garments.length} prendas en tu armario. Para ${body.occasion || "esta ocasion"}, puedo combinar por formalidad, clima y colores disponibles${colors.length ? ` como ${colors.join(", ")}` : ""}. Genera un outfit automatico para guardar una recomendacion concreta.`;
